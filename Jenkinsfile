@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         GITHUB_TOKEN = credentials('github-pkumarcoverity')
+        DETECT_EXCLUDED_DETECTOR_TYPES=GIT
     }
 
     tools {
