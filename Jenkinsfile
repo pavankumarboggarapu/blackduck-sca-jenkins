@@ -35,13 +35,10 @@ pipeline {
 
         stage('Coverity Scan') {
             steps {
-                security_scan product: 'coverity',
-                    coverity_project_name: "${env.REPO_NAME}",
-                    coverity_stream_name: "${env.REPO_NAME}-${env.BRANCH_NAME}",
-                    coverity_args: "-o commit.connect.description=${env.BUILD_TAG}",
-                    coverity_policy_view: 'Outstanding Issues',
-                    coverity_local: true,
-                    coverity_prComment_enabled: true,
+                security_scan product: 'blackducksca',
+                    blackducksca_scan_failure_severities: 'BLOCKER',
+                    blackducksca_prComment_enabled: true,
+                    blackducksca_reports_sarif_create: true,
                     mark_build_status: 'UNSTABLE',
                     github_token: "${env.GITHUB_TOKEN}",
                     include_diagnostics: false
